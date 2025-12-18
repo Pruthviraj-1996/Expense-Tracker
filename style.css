@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #ffffff;
+    width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Balance section */
+#balance-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#balance {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-top: 5px;
+}
+
+/* Transaction history */
+#transaction-section {
+    margin-bottom: 20px;
+}
+
+#transaction-list {
+    list-style: none;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#transaction-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: #f1f1f1;
+    font-size: 14px;
+}
+
+.income {
+    border-left: 5px solid #2ecc71;
+}
+
+.expense {
+    border-left: 5px solid #e74c3c;
+}
+
+/* Form section */
+#form-section h2 {
+    margin-bottom: 10px;
+}
+
+#transaction-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.type-select {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.type-select label {
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+/* Error message */
+#error-message {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+    text-align: center;
+}
