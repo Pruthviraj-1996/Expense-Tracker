@@ -4,33 +4,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Expense Tracker</h1>
-        <div id="balance-section">
-            <h2>Current Balance</h2>
-            <div id="balance">$0</div>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <h1>
+            <i class="fa-solid fa-wallet"></i>
+            Expense Tracker
+        </h1>
+
+        <p>Manage your income and expenses efficiently.</p>
+
+    </header>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <section class="summary">
+
+        <div class="card balance-card">
+
+            <i class="fa-solid fa-scale-balanced"></i>
+
+            <h3>Balance</h3>
+
+            <h2 id="balance">₹0</h2>
+
         </div>
-        <div id="transaction-section">
-            <h2>Transaction History</h2>
-            <ul id="transaction-list"></ul>
+
+        <div class="card income-card">
+
+            <i class="fa-solid fa-arrow-trend-up"></i>
+
+            <h3>Total Income</h3>
+
+            <h2 id="income">₹0</h2>
+
         </div>
-        <div id="form-section">
-            <h2>Add New Transaction</h2>
-            <form id="transaction-form">
-                <input type="text" id="name" placeholder="Transaction Name" required>
-                <input type="number" id="amount" placeholder="Amount" required min="1">
-                <div class="type-select">
-                    <label><input type="radio" name="type" value="income" checked> Income</label>
-                    <label><input type="radio" name="type" value="expense"> Expense</label>
-                </div>
-                <button type="submit">Add Transaction</button>
-            </form>
-            <div id="error-message"></div>
+
+        <div class="card expense-card">
+
+            <i class="fa-solid fa-arrow-trend-down"></i>
+
+            <h3>Total Expense</h3>
+
+            <h2 id="expense">₹0</h2>
+
         </div>
-    </div>
-    <script src="script.js"></script>
+
+    </section>
+
+
+
+    <!-- ================= BUDGET ================= -->
+
+    <section class="budget-section">
+
+        <h2>
+
+            <i class="fa-solid fa-piggy-bank"></i>
+
+            Monthly Budget
+
+        </h2>
+
+        <div class="budget-row">
+
+            <input
+                type="number"
+                id="budget-input"
+                placeholder="Enter Monthly Budget">
+
+            <button id="save-budget">
+
+                Save Budget
+
+            </button>
+
+        </div>
+
+        <div class="budget-details">
+
+            <p>
+
+                Budget :
+
+                <span id="budget-display">
+
+                    ₹0
+
+                </span>
+
+            </p>
+
+            <p>
+
+                Remaining :
+
+                <span id="remaining-budget">
+
+                    ₹0
+
+                </span>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <section class="controls">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search Transactions">
+
+        <select id="filter">
+
+            <option value="all">All</option>
+
+            <option value="income">Income</option>
+
+            <option value="expense">Expense</option>
+
+        </select>
+
+    </section>
+
+
+
+    <!-- ================= ADD TRANSACTION ================= -->
+
+    <section class="form-section">
+
+        <h2>
+
+            <i class="fa-solid fa-plus"></i>
+
+            Add Transaction
+
+        </h2>
+
+        <form id="transaction-form">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Transaction Name"
+                required>
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="Amount"
+                required
+                min="1">
+
+            <select id="category">
+
+                <option>Food</option>
+
+                <option>Shopping</option>
+
+                <option>Transport</option>
+
+                <option>Bills</option>
+
+                <option>Entertainment</option>
+
+                <option>Health</option>
+
+                <option>Education</option>
+
+                <option>Salary</option>
+
+                <option>Freelance</option>
+
+                <option>Others</option>
+
+            </select>
+
+            <div class="radio-group">
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="type"
+                        value="income"
+                        checked>
+
+                    Income
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="type"
+                        value="expense">
+
+                    Expense
+
+                </label>
+
+            </div>
+
+            <button type="submit">
+
+                Add Transaction
+
+            </button>
+
+        </form>
+
+        <div id="error-message"></div>
+
+    </section>
+
+
+
+    <!-- ================= ACTION BUTTONS ================= -->
+
+    <section class="action-buttons">
+
+        <button id="clear-btn">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Clear All
+
+        </button>
+
+        <button id="export-btn">
+
+            <i class="fa-solid fa-file-csv"></i>
+
+            Export CSV
+
+        </button>
+
+    </section>
+
+
+
+    <!-- ================= TRANSACTIONS ================= -->
+
+    <section class="history-section">
+
+        <h2>
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Transaction History
+
+        </h2>
+
+        <ul id="transaction-list">
+
+        </ul>
+
+    </section>
+
+
+
+    <!-- ================= CHARTS ================= -->
+
+    <section class="charts">
+
+        <div class="chart-card">
+
+            <h2>
+
+                Expense by Category
+
+            </h2>
+
+            <canvas id="pieChart"></canvas>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
